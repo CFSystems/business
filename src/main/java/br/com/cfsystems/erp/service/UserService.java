@@ -12,23 +12,23 @@ import br.com.cfsystems.erp.model.User;
 public class UserService {
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAO dao;
 	
 	public Collection<User> findAll(){
-		return userDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public User find(int id){
-		User user = userDAO.find(id);
+		User user = dao.find(id);
 		return user;
 	}
 	
 	public void save(User user){
 		try {
 			if (user.getId() == null) {
-				userDAO.save(user);
+				dao.save(user);
 			} else {
-				userDAO.update(user);
+				dao.update(user);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,8 +37,8 @@ public class UserService {
 	
 	public void delete(int id){
 		try {
-			User user = userDAO.find(id);
-			userDAO.remove(user);
+			User user = dao.find(id);
+			dao.remove(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

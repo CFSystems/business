@@ -5,25 +5,25 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.cfsystems.erp.dao.AccountDAO;
-import br.com.cfsystems.erp.model.Account;
+import br.com.cfsystems.erp.dao.ProductTypeDAO;
+import br.com.cfsystems.erp.model.ProductType;
 
 @Service
-public class AccountService {
+public class ProductTypeService {
 
 	@Autowired
-	private AccountDAO dao;
-	
-	public Collection<Account> findAll(){
+	private ProductTypeDAO dao;
+
+	public Collection<ProductType> findAll() {
 		return dao.findAll();
 	}
-	
-	public Account find(int id){
-		Account account = dao.find(id);
+
+	public ProductType find(int id) {
+		ProductType account = dao.find(id);
 		return account;
 	}
-	
-	public void save(Account account){
+
+	public void save(ProductType account) {
 		try {
 			if (account.getId() == null) {
 				dao.save(account);
@@ -34,14 +34,14 @@ public class AccountService {
 			e.printStackTrace();
 		}
 	}
-	
-	public void delete(int id){
+
+	public void delete(int id) {
 		try {
-			Account account = dao.find(id);
+			ProductType account = dao.find(id);
 			dao.remove(account);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

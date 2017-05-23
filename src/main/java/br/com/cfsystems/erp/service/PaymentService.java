@@ -14,29 +14,29 @@ import br.com.cfsystems.erp.model.Payment;
 public class PaymentService {
 	
 	@Autowired
-	private PaymentDAO paymentDAO;
+	private PaymentDAO dao;
 	@Autowired
 	private AccountDAO accountDAO;
 	
 	public Collection<Payment> findAll(){
-		return paymentDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public Payment find(int id){
-		Payment payment = paymentDAO.find(id);
+		Payment payment = dao.find(id);
 		return payment;
 	}
 	
 	@Transactional
 	public void save(Payment payment) {
-		paymentDAO.save(payment);
+		dao.save(payment);
 		accountDAO.updateAumontPaid(payment.getAccount());
 	}
 	
 	public void delete(int id){
 		try {
-			Payment payment = paymentDAO.find(id);
-			paymentDAO.remove(payment);
+			Payment payment = dao.find(id);
+			dao.remove(payment);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

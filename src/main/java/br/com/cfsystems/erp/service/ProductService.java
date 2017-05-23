@@ -12,23 +12,23 @@ import br.com.cfsystems.erp.model.Product;
 public class ProductService {
 	
 	@Autowired
-	private ProductDAO productDAO;
+	private ProductDAO dao;
 	
 	public Collection<Product> findAll(){
-		return productDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public Product find(int id){
-		Product product = productDAO.find(id);
+		Product product = dao.find(id);
 		return product;
 	}
 	
 	public void save(Product product){
 		try {
 			if (product.getId() == null) {
-				productDAO.save(product);
+				dao.save(product);
 			} else {
-				productDAO.update(product);
+				dao.update(product);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,8 +37,8 @@ public class ProductService {
 	
 	public void delete(int id){
 		try {
-			Product product = productDAO.find(id);
-			productDAO.remove(product);
+			Product product = dao.find(id);
+			dao.remove(product);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

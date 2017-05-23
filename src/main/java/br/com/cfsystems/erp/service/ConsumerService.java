@@ -12,14 +12,14 @@ import br.com.cfsystems.erp.model.Consumer;
 public class ConsumerService {
 
 	@Autowired
-	private ConsumerDAO consumerDAO;
+	private ConsumerDAO dao;
 	
 	public Collection<Consumer> findAll(){
-		return consumerDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public Consumer find(int id){
-		Consumer c = consumerDAO.find(id);
+		Consumer c = dao.find(id);
 		return c;
 	}
 	
@@ -27,10 +27,10 @@ public class ConsumerService {
 		try {
 			if (consumer.getId() == null) {
 				System.out.println("Criando cliente " + consumer.getName());
-				consumerDAO.save(consumer);
+				dao.save(consumer);
 			} else {
 				System.out.println("Alterando cliente " + consumer.getName());
-				consumerDAO.update(consumer);
+				dao.update(consumer);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,8 +39,8 @@ public class ConsumerService {
 	
 	public void delete(int id){
 		try {
-			Consumer consumer = consumerDAO.find(id);
-			consumerDAO.remove(consumer);
+			Consumer consumer = dao.find(id);
+			dao.remove(consumer);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

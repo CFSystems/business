@@ -12,23 +12,23 @@ import br.com.cfsystems.erp.model.PurchaseProduct;
 public class PurchaseProductService {
 
 	@Autowired
-	private PurchaseProductDAO purchaseProductDAO;
+	private PurchaseProductDAO dao;
 	
 	public Collection<PurchaseProduct> findAll(){
-		return purchaseProductDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public PurchaseProduct find(int id){
-		PurchaseProduct purchaseProduct = purchaseProductDAO.find(id);
+		PurchaseProduct purchaseProduct = dao.find(id);
 		return purchaseProduct;
 	}
 	
 	public void save(PurchaseProduct purchaseProduct){
 		try {
 			if (purchaseProduct.getId() == null) {
-				purchaseProductDAO.save(purchaseProduct);
+				dao.save(purchaseProduct);
 			} else {
-				purchaseProductDAO.update(purchaseProduct);
+				dao.update(purchaseProduct);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,8 +37,8 @@ public class PurchaseProductService {
 	
 	public void delete(int id){
 		try {
-			PurchaseProduct purchaseProduct = purchaseProductDAO.find(id);
-			purchaseProductDAO.remove(purchaseProduct);
+			PurchaseProduct purchaseProduct = dao.find(id);
+			dao.remove(purchaseProduct);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

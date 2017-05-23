@@ -12,23 +12,23 @@ import br.com.cfsystems.erp.model.PaymentMethod;
 public class PaymentMethodService {
 
 	@Autowired
-	private PaymentMethodDAO paymentMethodDAO;
+	private PaymentMethodDAO dao;
 	
 	public Collection<PaymentMethod> findAll(){
-		return paymentMethodDAO.findAll();
+		return dao.findAll();
 	}
 	
 	public PaymentMethod find(int id){
-		PaymentMethod paymentMethod = paymentMethodDAO.find(id);
+		PaymentMethod paymentMethod = dao.find(id);
 		return paymentMethod;
 	}
 	
 	public void save(PaymentMethod paymentMethod){
 		try {
 			if (paymentMethod.getId() == null) {
-				paymentMethodDAO.save(paymentMethod);
+				dao.save(paymentMethod);
 			} else {
-				paymentMethodDAO.update(paymentMethod);
+				dao.update(paymentMethod);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,8 +37,8 @@ public class PaymentMethodService {
 	
 	public void delete(int id){
 		try {
-			PaymentMethod paymentMethod = paymentMethodDAO.find(id);
-			paymentMethodDAO.remove(paymentMethod);
+			PaymentMethod paymentMethod = dao.find(id);
+			dao.remove(paymentMethod);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
